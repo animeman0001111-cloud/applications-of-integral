@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Center of Mass of Plane Objects</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ===== GLOBAL ===== */
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(-45deg,#ecfeff,#fef3c7,#fce7f3,#e0f2fe);
+  background-size:400% 400%;
+  animation:bgShift 20s ease infinite;
+}
+
+@keyframes bgShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ===== PAGE ===== */
+.page{
+  max-width:1250px;
+  margin:60px auto;
+  padding:60px;
+  background:#ffffffee;
+  border-radius:42px;
+  box-shadow:0 50px 140px rgba(0,0,0,.22);
+  animation:pageEnter 1.2s ease;
+}
+
+@keyframes pageEnter{
+  from{opacity:0;transform:translateY(80px)}
+  to{opacity:1;transform:none}
+}
+
+/* ===== TITLE ===== */
+h1{
+  text-align:center;
+  font-size:48px;
+  padding:24px 60px;
+  border-radius:36px;
+  border:6px solid #14b8a6;
+  display:inline-block;
+}
+
+.subtitle{
+  text-align:center;
+  font-size:22px;
+  margin:30px 0 90px;
+  color:#334155;
+}
+
+/* ===== SECTIONS ===== */
+.section{
+  display:flex;
+  flex-direction:column;
+  gap:100px;
+}
+
+.card{
+  padding:56px;
+  border-radius:40px;
+  box-shadow:0 35px 120px rgba(0,0,0,.18);
+  opacity:0;
+  transform:translateY(160px) scale(.92);
+  transition:1.2s cubic-bezier(.16,1,.3,1);
+}
+
+.card.show{
+  opacity:1;
+  transform:none;
+}
+
+.card:hover{
+  transform:translateY(-18px) scale(1.04);
+  box-shadow:0 90px 220px rgba(0,0,0,.32);
+}
+
+/* ===== COLOR THEMES ===== */
+.intro{background:linear-gradient(135deg,#dcfce7,#bbf7d0)}
+.formulaCard{background:linear-gradient(135deg,#e0f2fe,#bae6fd)}
+.graphCard{background:linear-gradient(135deg,#fff7ed,#fed7aa)}
+.laminar{background:linear-gradient(135deg,#fdf2f8,#fbcfe8)}
+.apps{background:linear-gradient(135deg,#fef9c3,#fde68a)}
+
+h2{font-size:34px;margin-bottom:18px}
+p,li{font-size:19px;line-height:1.85}
+
+/* ===== FORMULA ===== */
+.formula{
+  margin:24px 0;
+  padding:22px;
+  border-radius:18px;
+  background:rgba(255,255,255,.9);
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+/* ===== GRAPH ===== */
+.graph{
+  width:65%;
+  margin:40px auto 0;
+  display:block;
+  transition:.8s ease;
+}
+
+.graph:hover{
+  transform:scale(1.06);
+  filter:drop-shadow(0 22px 35px rgba(0,0,0,.35));
+}
+
+.axis{
+  stroke:#475569;
+  stroke-width:2;
+}
+
+.shape{
+  fill:rgba(34,197,94,.35);
+  stroke:#16a34a;
+  stroke-width:2;
+}
+
+.centroid{
+  fill:#dc2626;
+}
+
+.label{
+  font-size:12px;
+  fill:#334155;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<center><h1>Center of Mass of Plane Objects</h1></center>
+<div class="subtitle">
+Finding the balance point of lamina using integration
+</div>
+
+<div class="section">
+
+<!-- INTRO -->
+<div class="card intro">
+<h2>📘 What is the Center of Mass?</h2>
+<p>
+The <b>center of mass</b> of a plane object (lamina) is the point at which the
+entire mass of the object can be considered to be concentrated.
+</p>
+<p>
+For uniform lamina, the center of mass depends only on the <b>shape</b>,
+not on thickness or density.
+</p>
+</div>
+
+<!-- FORMULA -->
+<div class="card formulaCard">
+<h2>🧮 Mathematical Formulation</h2>
+<p>
+For a lamina bounded by the curve <b>y = f(x)</b>, the x-axis, and vertical lines
+<b>x = a</b> and <b>x = b</b>:
+</p>
+
+<div class="formula">
+x̄ = (1/A) ∫<sub>a</sub><sup>b</sup> x f(x) dx  
+<br><br>
+ȳ = (1/2A) ∫<sub>a</sub><sup>b</sup> [f(x)]² dx
+</div>
+
+<p>
+where <b>A</b> is the area of the region.
+</p>
+</div>
+
+<!-- GRAPH -->
+<div class="card graphCard">
+<h2>📐 Graphical Representation</h2>
+<p>
+The centroid lies inside the region and represents the balance point.
+</p>
+
+<svg class="graph" viewBox="0 0 320 220">
+  <!-- Axes -->
+  <line x1="30" y1="180" x2="290" y2="180" class="axis"/>
+  <line x1="60" y1="200" x2="60" y2="20" class="axis"/>
+
+  <!-- Region -->
+  <path d="M60 180 Q160 60 260 180 L260 180 L60 180 Z" class="shape"/>
+
+  <!-- Centroid -->
+  <circle cx="160" cy="125" r="6" class="centroid"/>
+  <text x="170" y="120" class="label">(x̄, ȳ)</text>
+</svg>
+</div>
+
+<!-- LAMINA -->
+<div class="card laminar">
+<h2>📏 Center of Mass of Uniform Lamina</h2>
+<p>
+If the lamina has <b>uniform density</b>, then:
+</p>
+<ul>
+<li>Mass is proportional to area</li>
+<li>Centroid coincides with center of mass</li>
+<li>Integration simplifies significantly</li>
+</ul>
+
+<p>
+For symmetric regions, the center of mass lies on the axis of symmetry.
+</p>
+</div>
+
+<!-- APPLICATIONS -->
+<div class="card apps">
+<h2>⚙ Applications in Engineering & Physics</h2>
+<ul>
+<li>Structural stability of bridges</li>
+<li>Aircraft and vehicle design</li>
+<li>Load balancing in mechanical systems</li>
+<li>Robotics and motion planning</li>
+<li>Architecture and civil engineering</li>
+</ul>
+
+<p>
+<b>Correct center of mass ensures safety, efficiency, and balance.</b>
+</p>
+</div>
+
+</div>
+</div>
+
+<script>
+const cards=document.querySelectorAll('.card');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('show');
+  });
+},{threshold:0.3});
+cards.forEach(c=>observer.observe(c));
+</script>
+
+</body>
+</html>
