@@ -139,6 +139,22 @@ p,li{font-size:19px;line-height:1.8}
   fill:#334155;
   font-weight:bold;
 }
+  	/*===== BACK HOME ====*/
+.center-btn {
+  display: block;              /* required for margin auto */
+  width: fit-content;
+  margin: 20px auto;           /* centers horizontally */
+  text-decoration: none;
+  padding: 12px 24px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 18px;
+  border-radius: 8px;
+}
+
+.center-btn:hover {
+  background-color: #1e40af;
+}
 </style>
 </head>
 
@@ -225,7 +241,7 @@ formed has the <b>same area</b> as the region under the curve.
 
 </div>
 </div>
-
+<a href="index.html"><button class="center-btn">⬅ Back </button></a>
 <script>
 const cards=document.querySelectorAll('.card');
 const observer=new IntersectionObserver(entries=>{
@@ -238,3 +254,4 @@ cards.forEach(c=>observer.observe(c));
 
 </body>
 </html>
+
